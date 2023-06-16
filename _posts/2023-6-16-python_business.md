@@ -12,6 +12,10 @@ tags: python
 
 ### 無套利條件
 ![](https://github.com/Ian1121023/Ian1121023.github.io/blob/master/images/python-business/picture1.PNG?raw=true)<br>
+#### 如何抓住稍縱即逝的機會?
+* 高頻交易 <br>
+  - 人做不到，機器做得到 
+* 社群媒體
 
 ## 博客主要模块介绍
 
