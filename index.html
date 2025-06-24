@@ -5,110 +5,401 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的學習筆記</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        header {
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        /* 導航列 */
+        nav {
+            background: #2c3e50;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #3498db;
+        }
+        
+        /* 主要內容區 */
+        main {
+            margin-top: 60px;
+            min-height: calc(100vh - 160px);
+        }
+        
+        /* 英雄區塊 */
+        .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
+            padding: 4rem 20px;
             text-align: center;
         }
-        h1 {
-            margin: 0;
-            font-size: 2.5rem;
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
         }
-        .subtitle {
-            margin-top: 0.5rem;
+        
+        .hero p {
+            font-size: 1.2rem;
             opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
+        
+        /* 內容容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+        
+        /* 卡片網格 */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        /* 卡片樣式 */
         .card {
             background: white;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
         .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
-        .card h2 {
+        
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card .icon {
+            font-size: 1.5rem;
+        }
+        
+        .card-content {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .date {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .read-more {
             color: #667eea;
-            margin-top: 0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
         }
+        
+        .read-more:hover {
+            color: #764ba2;
+        }
+        
+        /* 標籤 */
         .tags {
             display: flex;
-            gap: 0.5rem;
             flex-wrap: wrap;
+            gap: 0.5rem;
             margin-top: 1rem;
         }
+        
         .tag {
-            background: #f0f0f0;
+            background: #e9ecef;
+            color: #495057;
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
             font-size: 0.85rem;
-            color: #666;
+            transition: all 0.3s;
         }
+        
+        .tag:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        /* 頁尾 */
         footer {
+            background: #2c3e50;
+            color: white;
             text-align: center;
-            margin-top: 3rem;
-            color: #666;
-            font-size: 0.9rem;
+            padding: 2rem 20px;
+            margin-top: 4rem;
         }
-        a {
-            color: #667eea;
+        
+        footer a {
+            color: #3498db;
             text-decoration: none;
         }
-        a:hover {
-            text-decoration: underline;
+        
+        /* 動畫 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 進度條 */
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 8px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .progress {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>我的學習筆記</h1>
-        <p class="subtitle">記錄每一步成長的足跡</p>
-    </header>
-
-    <main>
-        <div class="card">
-            <h2>🎯 關於這個網站</h2>
-            <p>歡迎來到我的個人學習筆記網站！這裡是我記錄學習歷程、整理知識點、分享心得的地方。</p>
-            <p>希望這些筆記不僅能幫助我自己複習，也能對其他學習者有所幫助。</p>
-        </div>
-
-        <div class="card">
-            <h2>📚 最新筆記</h2>
+    <!-- 導航列 -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">📚 學習筆記</a>
             <ul>
-                <li><a href="#">Git 與 GitHub 基礎教學</a> - 2024.01.20</li>
-                <li><a href="#">HTML/CSS 入門筆記</a> - 2024.01.18</li>
-                <li><a href="#">JavaScript 基礎概念</a> - 2024.01.15</li>
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#notes">筆記</a></li>
+                <li><a href="#projects">專案</a></li>
+                <li><a href="#about">關於</a></li>
             </ul>
         </div>
-
-        <div class="card">
-            <h2>🔥 學習主題</h2>
-            <div class="tags">
-                <span class="tag">前端開發</span>
-                <span class="tag">Python</span>
-                <span class="tag">資料分析</span>
-                <span class="tag">機器學習</span>
-                <span class="tag">網頁設計</span>
+    </nav>
+    
+    <!-- 主要內容 -->
+    <main>
+        <!-- 英雄區塊 -->
+        <section class="hero">
+            <h1>歡迎來到我的學習空間</h1>
+            <p>記錄知識、分享心得、持續成長</p>
+        </section>
+        
+        <!-- 最新筆記 -->
+        <section class="container">
+            <h2 style="color: #2c3e50; margin-bottom: 2rem;">📝 最新筆記</h2>
+            
+            <div class="cards-grid">
+                <!-- 筆記卡片 1 -->
+                <article class="card">
+                    <h3><span class="icon">🌐</span> HTML/CSS 基礎入門</h3>
+                    <div class="card-content">
+                        <p>學習網頁開發的第一步，了解 HTML 結構與 CSS 樣式的基本概念，包含常用標籤、選擇器、盒模型等重要知識。</p>
+                        <div class="tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">前端</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">
+                        <span class="date">2024-01-20</span>
+                        <a href="#" class="read-more">閱讀更多 →</a>
+                    </div>
+                </article>
+                
+                <!-- 筆記卡片 2 -->
+                <article class="card">
+                    <h3><span class="icon">⚡</span> JavaScript 快速入門</h3>
+                    <div class="card-content">
+                        <p>從變數宣告到函式應用，掌握 JavaScript 的核心概念。包含 ES6+ 新特性、DOM 操作、事件處理等實用技巧。</p>
+                        <div class="tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">ES6</span>
+                            <span class="tag">程式設計</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">
+                        <span class="date">2024-01-18</span>
+                        <a href="#" class="read-more">閱讀更多 →</a>
+                    </div>
+                </article>
+                
+                <!-- 筆記卡片 3 -->
+                <article class="card">
+                    <h3><span class="icon">🔧</span> Git 版本控制</h3>
+                    <div class="card-content">
+                        <p>掌握 Git 的基本操作，從初始化倉庫到分支管理，學習如何有效地進行版本控制和團隊協作。</p>
+                        <div class="tags">
+                            <span class="tag">Git</span>
+                            <span class="tag">GitHub</span>
+                            <span class="tag">工具</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">
+                        <span class="date">2024-01-15</span>
+                        <a href="#" class="read-more">閱讀更多 →</a>
+                    </div>
+                </article>
             </div>
-        </div>
+        </section>
+        
+        <!-- 學習進度 -->
+        <section class="container">
+            <h2 style="color: #2c3e50; margin-bottom: 2rem;">📊 學習進度</h2>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>前端開發</h3>
+                    <p>HTML/CSS/JavaScript 基礎</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 70%"></div>
+                    </div>
+                    <p style="text-align: right; margin-top: 0.5rem; color: #667eea;">70%</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Python 程式設計</h3>
+                    <p>基礎語法與資料結構</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 45%"></div>
+                    </div>
+                    <p style="text-align: right; margin-top: 0.5rem; color: #667eea;">45%</p>
+                </div>
+                
+                <div class="card">
+                    <h3>資料庫管理</h3>
+                    <p>SQL 語法與資料庫設計</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 30%"></div>
+                    </div>
+                    <p style="text-align: right; margin-top: 0.5rem; color: #667eea;">30%</p>
+                </div>
+            </div>
+        </section>
     </main>
-
+    
+    <!-- 頁尾 -->
     <footer>
-        <p>© 2024 我的學習筆記 | 使用 GitHub Pages 建立</p>
+        <p>© 2024 我的學習筆記 | 使用 <a href="https://pages.github.com/">GitHub Pages</a> 建立</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">持續學習，永不停歇 💪</p>
     </footer>
+    
+    <script>
+        // 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // 動態載入動畫
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                }
+            });
+        });
+        
+        cards.forEach(card => observer.observe(card));
+    </script>
 </body>
 </html>
