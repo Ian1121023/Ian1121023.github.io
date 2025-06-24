@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML/CSS 基礎入門 - 學習筆記</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", Arial, sans-serif;
+            line-height: 1.8;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        /* 導航列 */
+        nav {
+            background: #2c3e50;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #3498db;
+        }
+        
+        .breadcrumb {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* 文章容器 */
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+        
+        /* 文章標題區 */
+        .article-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .article-header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* 文章內容 */
+        .article-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .article-content h2 {
+            color: #2c3e50;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .article-content h3 {
+            color: #495057;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+        
+        .article-content p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        /* 程式碼區塊 */
+        pre {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+        
+        /* 行內程式碼 */
+        p code {
+            background: #e9ecef;
+            color: #e83e8c;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        /* 重點框 */
+        .highlight-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        
+        .highlight-box.warning {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+        
+        .highlight-box.success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+        
+        /* 列表樣式 */
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 表格樣式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        th {
+            background: #e9ecef;
+            font-weight: bold;
+        }
+        
+        /* 圖片樣式 */
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        
+        /* 導航按鈕 */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: #764ba2;
+        }
+        
+        .nav-btn.disabled {
+            background: #e9ecef;
+            color: #999;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航列 -->
+    <nav>
+        <div class="container">
+            <div>
+                <a href="../index.html" style="font-weight: bold;">📚 學習筆記</a>
+                <span class="breadcrumb" style="color: white; margin: 0 0.5rem;">›</span>
+                <span class="breadcrumb">HTML/CSS 基礎</span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 文章容器 -->
+    <div class="article-container">
+        <!-- 文章標題區 -->
+        <header class="article-header">
+            <h1>HTML/CSS 基礎入門</h1>
+            <div class="article-meta">
+                <span>📅 2024年1月20日</span>
+                <span>👁️ 閱讀時間：10 分鐘</span>
+                <span>🏷️ 前端開發</span>
+            </div>
+        </header>
+        
+        <!-- 文章內容 -->
+        <article class="article-content">
+            <p>HTML 和 CSS 是網頁開發的基礎。HTML 負責網頁的結構和內容，CSS 負責網頁的樣式和外觀。讓我們從基礎開始學習！</p>
+            
+            <h2>什麼是 HTML？</h2>
+            <p>HTML（HyperText Markup Language）是一種標記語言，用於建立網頁的結構。它使用各種標籤（tags）來定義內容的類型和結構。</p>
+            
+            <h3>基本的 HTML 結構</h3>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-TW"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;網頁標題&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;這是標題&lt;/h1&gt;
+    &lt;p&gt;這是段落&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            
+            <div class="highlight-box">
+                💡 <strong>提示：</strong>每個 HTML 文件都應該以 <code>&lt;!DOCTYPE html&gt;</code> 開始，這告訴瀏覽器這是 HTML5 文件。
+            </div>
+            
+            <h3>常用的 HTML 標籤</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>標籤</th>
+                        <th>用途</th>
+                        <th>範例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>&lt;h1&gt;-&lt;h6&gt;</code></td>
+                        <td>標題</td>
+                        <td><code>&lt;h1&gt;主標題&lt;/h1&gt;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;p&gt;</code></td>
+                        <td>段落</td>
+                        <td><code>&lt;p&gt;這是一個段落&lt;/p&gt;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;a&gt;</code></td>
+                        <td>連結</td>
+                        <td><code>&lt;a href="url"&gt;連結文字&lt;/a&gt;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;img&gt;</code></td>
+                        <td>圖片</td>
+                        <td><code>&lt;img src="image.jpg" alt="描述"&gt;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;div&gt;</code></td>
+                        <td>區塊容器</td>
+                        <td><code>&lt;div&gt;內容&lt;/div&gt;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>什麼是 CSS？</h2>
+            <p>CSS（Cascading Style Sheets）是用來控制 HTML 元素外觀的樣式表語言。它讓我們能夠改變顏色、字體、間距、佈局等視覺效果。</p>
+            
+            <h3>CSS 的三種使用方式</h3>
+            <ol>
+                <li><strong>行內樣式（Inline）</strong>：直接在 HTML 標籤中使用 style 屬性</li>
+                <li><strong>內部樣式（Internal）</strong>：在 HTML 的 &lt;head&gt; 中使用 &lt;style&gt; 標籤</li>
+                <li><strong>外部樣式（External）</strong>：使用獨立的 .css 檔案</li>
+            </ol>
+            
+            <h3>基本的 CSS 語法</h3>
+            <pre><code>/* 選擇器 */
+h1 {
+    color: blue;           /* 文字顏色 */
+    font-size: 24px;      /* 字體大小 */
+    text-align: center;   /* 文字對齊 */
+}
+
+/* Class 選擇器 */
+.highlight {
+    background-color: yellow;
+    padding: 10px;
+}
+
+/* ID 選擇器 */
+#header {
+    background-color: #333;
+    color: white;
+}</code></pre>
+            
+            <div class="highlight-box warning">
+                ⚠️ <strong>注意：</strong>ID 選擇器（#）的優先級高於 Class 選擇器（.），而行內樣式的優先級最高。
+            </div>
+            
+            <h2>實作練習：創建一個簡單的個人簡介頁面</h2>
+            <p>讓我們結合 HTML 和 CSS 來創建一個簡單的個人簡介頁面：</p>
+            
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-TW"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;我的個人簡介&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .profile-header {
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        
+        .skills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .skill-tag {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&
