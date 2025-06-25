@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>筆記檢視器</title>
+
+    <script src="notes-config.js"></script>
+
+    <!-- 引入 GitHub 風格的 Markdown 樣式 -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.0/github-markdown-light.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navigation {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .back-button:hover {
+            background: #0056b3;
+        }
+
+        .file-path {
+            color: #666;
+            font-size: 14px;
+            font-family: monospace;
+        }
+
+        .markdown-body {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            min-height: 400px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+
+        .error {
+            background: #fee;
+            color: #c00;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .error h2 {
+            margin-top: 0;
+        }
+
+        .error pre {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+
+        .error ol {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .error li {
+            margin: 8px 0;
+        }
+
+        /* Markdown 內容樣式調整 */
+        .markdown-body h1:first-child {
+            margin-top: 0;
+        }
+
+        .markdown-body pre {
+            background-color: #f6f8fa;
+        }
+
+        .markdown-body blockquote {
+            border-left: 4px solid #0366d6;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 導航區 -->
+    <div class="navigation">
+        <a href="../index.html" class="back-button">← 返回首頁</a>
+        <span class="file-path" id="file-path"></span>
+    </div>
+
+    <!-- Markdown 內容顯示區域 -->
+    <article class="markdown-body" id="content">
+        <div class="loading">
+            <p>正在載入筆記...</p>
+            <p style="font-size: 12px; color: #999;">如果長時間無法載入，請檢查檔案是否存在</p>
+        </div>
+    </article>
+
+    <!-- 引入 Marked.js 來解析 Markdown -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
+
+    <script>
+
+        // 從 URL 獲取筆記名稱
+        const urlParams = new URLSearchParams(window.location.search);
+        const noteName = urlParams.get('note') || 'default';
+
+        // 顯示檔案路徑
+        document.getElementById('file-path').textContent = `markdown/${noteName}.md`;
+
+        // 決定返回按鈕的目標
+        function getBackLink() {
+            // 如果是關於頁面，返回首頁
+            if (noteName.includes('about')) {
+                return '../index.html';
+            }
+            // 否則返回筆記列表
+            return '../notes.html';
+        }
+
+        // 更新返回按鈕
+        document.querySelector('.back-button').href = getBackLink();
+        document.querySelector('.back-button').textContent =
+            noteName.includes('about') ? '← 返回首頁' : '← 返回筆記列表';
+
+        // 載入並顯示 Markdown 檔案
+        async function loadMarkdown() {
+            try {
+                // 構建檔案路徑
+                const filePath = `../markdown/${noteName}.md`;
+                console.log('嘗試載入:', filePath);
+
+                // 嘗試載入 Markdown 檔案
+                const response = await fetch(filePath);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                // 讀取 Markdown 內容
+                const markdown = await response.text();
+
+                // 設定 marked 選項
+                marked.setOptions({
+                    breaks: true,        // 支援換行
+                    gfm: true,           // 支援 GitHub 風格 Markdown
+                    headerIds: false,    // 不生成 header ID
+                    mangle: false        // 不轉換 email
+                });
+
+                // 將 Markdown 轉換成 HTML
+                const html = marked.parse(markdown);
+
+                // 獲取筆記配置
+                const noteConfig = notesConfig[noteName] || notesConfig['default'];
+
+                // 建立筆記標頭（包含元數據）
+                const noteHeader = `
+                    <div style="border-bottom: 2px solid #e1e4e8; padding-bottom: 20px; margin-bottom: 30px;">
+                        <h1 style="margin: 0 0 10px 0; color: #24292e;">${noteConfig.title}</h1>
+                        <div style="display: flex; gap: 20px; flex-wrap: wrap; color: #586069; font-size: 14px;">
+                            <span><strong>作者：</strong>${noteConfig.author}</span>
+                            <span><strong>日期：</strong>${noteConfig.date}</span>
+                            <span><strong>標籤：</strong>${noteConfig.tags.map(tag => `<span style="background: #f1f8ff; padding: 2px 8px; border-radius: 3px; margin-right: 4px;">${tag}</span>`).join('')}</span>
+                        </div>
+                    </div>
+                `;
+
+                // 顯示內容（標頭 + Markdown 內容）
+                document.getElementById('content').innerHTML = noteHeader + html;
+
+                // 更新頁面標題
+                document.title = noteConfig.title + ' - 學習筆記';
+
+            } catch (error) {
+                console.error('載入錯誤:', error);
+
+                // 顯示詳細的錯誤訊息
+                document.getElementById('content').innerHTML = `
+                    <div class="error">
+                        <h2>載入失敗</h2>
+                        <p><strong>找不到檔案：</strong> markdown/${noteName}.md</p>
+                        <p><strong>錯誤訊息：</strong> ${error.message}</p>
+                        
+                        <h3>檢查事項：</h3>
+                        <ol>
+                            <li>確認檔案路徑是否正確</li>
+                            <li>確認檔案名稱大小寫是否正確</li>
+                            <li>確認 markdown 資料夾是否存在</li>
+                            <li>如果檔案在子資料夾中，URL 應該是：<br>
+                                <code>viewer.html?note=subfolder/filename</code></li>
+                        </ol>
+                        
+                        <h3>你的檔案結構應該是：</h3>
+                        <pre>
+你的網站/
+├── notes/
+│   └── viewer.html (這個檔案)
+└── markdown/
+    ${noteName.includes('/') ?
+                        `├── ${noteName.split('/')[0]}/
+    │   └── ${noteName.split('/')[1]}.md` :
+                        `└── ${noteName}.md`}
+                        </pre>
+                    </div>
+                `;
+            }
+        }
+
+        // 頁面載入時執行
+        document.addEventListener('DOMContentLoaded', loadMarkdown);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於我 - 學習筆記</title>
+    <style>
+        /* 使用與首頁相同的基礎樣式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* 導航列 */
+        nav {
+            background: #2c3e50;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #3498db;
+        }
+
+        /* 主要內容區 */
+        main {
+            margin-top: 60px;
+            min-height: calc(100vh - 160px);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 20px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        /* 筆記分類 */
+        .categories {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: white;
+            border: 2px solid #e9ecef;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        /* 筆記列表 */
+        .notes-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .note-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .note-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .note-item h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .note-excerpt {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .note-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .note-tags {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: #e9ecef;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 20px;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        /* 動畫 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 背景裝飾圓波 */
+        body::before, body::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        z-index: -1;
+        }
+        body::before {
+        width: 300px; height: 300px;
+        background: rgba(102,126,234,0.15);
+        top: 100px; left: -100px;
+        }
+        body::after {
+        width: 200px; height: 200px;
+        background: rgba(118,75,162,0.15);
+        bottom: 150px; right: -80px;
+        }
+
+        /* 區塊淡入上移 */
+        section {
+        opacity: 0; transform: translateY(20px);
+        animation: fadeInUp 0.8s forwards;
+        animation-delay: var(--delay, 0s);
+        }
+        #intro    { --delay: 0.2s; }
+        #skills   { --delay: 0.4s; }
+        #journey  { --delay: 0.6s; }
+        #values   { --delay: 0.8s; }
+        #contact  { --delay: 1s; }
+
+        /* fadeInUp 關鍵影格 */
+        @keyframes fadeInUp {
+        to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 標題底線動效 */
+        h2, h3 {
+        position: relative;
+        padding-bottom: 0.4rem;
+        }
+        h2::after, h3::after {
+        content: "";
+        position: absolute; left: 0; bottom: 0;
+        width: 0; height: 4px;
+        background: #3498db;
+        transition: width 0.5s ease-out var(--underline-delay, 0s);
+        }
+        h2:hover::after, h3:hover::after {
+        width: 50px;
+        }
+
+        /* 技能標籤懸停效果 */
+        .tag {
+        transition: transform 0.3s, background 0.3s, color 0.3s;
+        }
+        .tag:hover {
+        transform: scale(1.1);
+        background: linear-gradient(120deg, #667eea, #764ba2);
+        color: #fff;
+        }
+
+        /* 區塊間留白 & 微調 */
+        #skills .tags { gap: 0.8rem; }
+        section { margin-bottom: 2rem; }
+
+        /* page-header 文字動畫 */
+        .page-header h1 {
+        opacity: 0; transform: translateY(-20px);
+        animation: fadeInUp 1s forwards;
+        animation-delay: 0.1s;
+        }
+        .page-header p {
+        opacity: 0; transform: translateY(-20px);
+        animation: fadeInUp 1s forwards;
+        animation-delay: 0.3s;
+        }
+
+        /* 微調響應式 */
+        @media (max-width: 768px) {
+        body::before, body::after { display: none; }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 導航列 -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">📚 學習筆記</a>
+            <ul>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="notes.html">筆記</a></li>
+                <li><a href="projects.html">專案</a></li>
+                <li><a href="about.html" class="active">關於我</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主要內容 -->
+    <main>
+        <!-- 頁面標題 -->
+        <div class="page-header">
+            <h1>關於我</h1>
+            <p>記錄成長，分享技術，與你一同探索前端、後端與雲端世界</p>
+        </div>
+
+        <div class="container">
+            <!-- 自我簡介 -->
+            <section id="intro">
+                <h2>你好，我是易安</h2>
+                <p>
+                    我是一位對前端、後端與雲端架構充滿熱情的自學者。
+                    這裡是我的技術實驗室：每一篇筆記、每一次部署，都是我在成為雲端工程師路上的重要里程碑。
+                </p>
+            </section>
+
+            <!-- 技能標籤 -->
+            <section id="skills">
+                <h3>🧠 技能概覽</h3>
+                <div class="tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">Express</span>
+                    <span class="tag">Git</span>
+                    <span class="tag">CI/CD</span>
+                    <span class="tag">GCP</span>
+                    <span class="tag">AWS</span>
+                    <span class="tag">VS Code</span>
+                </div>
+            </section>
+
+            <!-- 學習里程碑 -->
+            <section id="journey">
+                <h3>🔍 學習里程碑</h3>
+                <ul>
+                    <li>2023.01 – 前端起步：掌握 HTML、CSS、JavaScript 基礎與 DOM 操作。</li>
+                    <li>2023.06 – 後端初探：使用 Python Flask 及 Node.js Express 架設簡易 API。</li>
+                    <li>2024.03 – 工具提升：熟悉 Git 工作流程與 VS Code 開發效能技巧。</li>
+                    <li>2025.01 – 雲端部署：在 GCP Compute Engine 及 AWS EC2 上自動化部署專案。</li>
+                </ul>
+            </section>
+
+            <!-- 核心價值 -->
+            <section id="values">
+                <h3>💡 核心價值</h3>
+                <ul>
+                    <li>好奇心：每天多問一個「為什麼」，讓學習更有深度。</li>
+                    <li>結構化思考：拆解複雜問題，讓每一步都清晰可執行。</li>
+                    <li>樂於分享：公開筆記與範例，讓彼此成為成長的推手。</li>
+                </ul>
+            </section>
+
+            <!-- 聯絡方式 -->
+            <section id="contact">
+                <h3>📫 聯絡我</h3>
+                <p>
+                    GitHub：<a href="https://github.com/Ian1121023" target="_blank">YourGitHub</a><br>
+                    LinkedIn：<a href="https://www.linkedin.com/in/%E6%98%93%E5%AE%89-%E5%BC%B5-4793b334a/" target="_blank">YourProfile</a><br>
+                    Email：<a href="mailto:tonyikci@gmail.com">tonyikci@gmail.com
+                    </a>
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>© 2025 我的學習筆記 | 使用 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> 建立</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">持續學習，永不停歇 💪</p>
+    </footer>
+</body>
+  

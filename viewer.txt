@@ -225,7 +225,7 @@
             </ul>
         </div>
     </nav>
-
+    
     <!-- 主要內容 -->
     <main>
         <!-- 頁面標題 -->
@@ -238,18 +238,18 @@
         <div class="container">
             <!-- 分類按鈕 -->
             <div class="categories">
-                <a href="#" class="category-btn active" data-filter="全部">全部</a>
-                <a href="#" class="category-btn" data-filter="前端開發">前端開發</a>
-                <a href="#" class="category-btn" data-filter="雲端部屬">雲端部屬</a>
-                <a href="#" class="category-btn" data-filter="後端開發">後端開發</a>
-                <a href="#" class="category-btn" data-filter="工具使用">工具使用</a>
-                <a href="#" class="category-btn" data-filter="學習心得">學習心得</a>
+                <a href="#" class="category-btn active">全部</a>
+                <a href="#" class="category-btn">前端開發</a>
+                <a href="#" class="category-btn">後端技術</a>
+                <a href="#" class="category-btn">雲端部屬</a>
+                <a href="#" class="category-btn">工具使用</a>
+                <a href="#" class="category-btn">學習心得</a>
             </div>
             
             <!-- 筆記列表 -->
             <div class="notes-list">
                 <!-- 筆記項目 1 -->
-                <a href="notes/viewer.html?note=html-css" class="note-item" data-category="前端開發">
+                <a href="notes/viewer.html?note=html-css" class="note-item">
                     <h3>🌐 HTML/CSS 基礎入門</h3>
                     <p class="note-excerpt">
                         學習網頁開發的第一步，了解 HTML 結構與 CSS 樣式的基本概念，包含常用標籤、選擇器、盒模型等重要知識。
@@ -265,7 +265,7 @@
                 </a>
 
                 <!-- 筆記項目 2 -->
-                <a href="notes/viewer.html?note=cloud/gcp-basic" class="note-item" data-category="雲端部屬">
+                <a href="notes/viewer.html?note=cloud/gcp-basic" class="note-item">
                     <h3>☁️ GCP 雲端部屬</h3>
                     <p class="note-excerpt">
                         掌握GCP使用方法與技巧，考取GCP證照
@@ -281,7 +281,7 @@
                 </a>
 
                 <!-- 筆記項目 3 -->
-                <a href="notes/viewer.html?note=cloud/cloud-planning" class="note-item" data-category="雲端部屬">
+                <a href="notes/viewer.html?note=cloud/cloud-planning" class="note-item">
                     <h3>✏️ 雲端維運學習計畫</h3>
                     <p class="note-excerpt">
                         掌握雲端維運，考取相關證照
@@ -297,7 +297,7 @@
                 </a>
 
                 <!-- 筆記項目 4 -->
-                <a href="notes/viewer.html?note=cloud/it-basic" class="note-item" data-category="學習心得">
+                <a href="notes/viewer.html?note=cloud/it-basic" class="note-item">
                     <h3>✏️ IT 基礎知識</h3>
                     <p class="note-excerpt">
                         在虛擬機裝server，學會使用linux shell，學會網路基礎
@@ -305,9 +305,9 @@
                     <div class="note-meta">
                         <span>2025年6月25日</span>
                         <div class="note-tags">
-                            <span class="tag">心得</span>
+                            <span class="tag">gcp</span>
                             <span class="tag">cloud</span>
-                            <span class="tag">IT</span>
+                            <span class="tag">工具</span>
                         </div>
                     </div>
                 </a>
@@ -315,29 +315,6 @@
         </div>
     </main>
     
-    <script>
-        // 分類篩選功能
-        document.querySelectorAll('.category-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-
-                // 更新按鈕狀態
-                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                // 篩選筆記
-                const filter = btn.dataset.filter;
-                document.querySelectorAll('.note-item').forEach(note => {
-                    if (filter === '全部' || note.dataset.category === filter) {
-                        note.style.display = 'block';
-                    } else {
-                        note.style.display = 'none';
-                    }
-                });
-            });
-        });
-    </script>
-
     <!-- 頁尾 -->
     <footer>
         <p>© 2025 我的學習筆記 | 使用 <a href="https://pages.github.com/">GitHub Pages</a> 建立</p>
