@@ -25,7 +25,7 @@ const notesConfig = {
     },
     
     // 程式設計相關
-    'html-css': {
+    'frontend/html-css': {
         title: 'HTML/CSS 基礎入門',
         author: '張易安',
         date: '2024-01-25',
