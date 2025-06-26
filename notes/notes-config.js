@@ -69,18 +69,18 @@ const notesConfig = {
     },
     
     // 工具和環境
-    'git-tutorial': {
-        title: 'Git 版本控制',
+    'A': {
+        title: 'Markdown基本操作',
         author: '你的名字',
-        date: '2024-03-01',
-        tags: ['Git', '版本控制', '工具']
+        date: '2025-03-01',
+        tags: ['MD', '工具']
     },
     
-    'docker-basics': {
-        title: 'Docker 容器化技術',
+    'misc/markdown': {
+        title: 'Markdown基本操作',
         author: '你的名字',
         date: '2024-03-05',
-        tags: ['Docker', '容器化', 'DevOps']
+        tags: ['MD', '工具']
     },
     
     // 學習筆記
