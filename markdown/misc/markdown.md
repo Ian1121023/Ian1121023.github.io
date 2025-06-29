@@ -53,6 +53,11 @@ import time
 
 ---
 
+```python
+def hello():
+    print("Hello")
+```
+
 `<print("行內代碼")>`
 
 - [x] 任務 alt+c快捷完成
@@ -67,15 +72,16 @@ alt+shift+f快捷表格
 
 :smile:
 :fa-car:
-30^th^
-H~2~O
+30<sup>th<sup>
+H<sub>2</sub>O
 Content [^1]
 
 [^1]: Hi! This is a footnote
-*[HTML]:Hyper Text Markup Language
-*[W3C]: World Wide Web Consortium
+
+
 The HTML specification
 is maintained by the W3C.
+
 ==marked==
 
 $$f(x)=sin(u)/2$$

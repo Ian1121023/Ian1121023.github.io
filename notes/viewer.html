@@ -11,6 +11,16 @@
     <!-- 引入 GitHub 風格的 Markdown 樣式 -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.0/github-markdown-light.min.css">
+    
+    <!-- Prism CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- 行號插件 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css"
+        rel="stylesheet" />
+
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 
     <style>
         body {
@@ -107,6 +117,17 @@
         .markdown-body blockquote {
             border-left: 4px solid #0366d6;
         }
+
+        .markdown-body pre[class*="language-"] {
+            position: relative;
+            padding-left: 3.8em;
+        }
+
+        .markdown-body pre[class*="language-"].line-numbers {
+            padding-left: 3.8em;
+        }
+
+       
     </style>
 </head>
 
@@ -126,7 +147,7 @@
     </article>
 
     <!-- 引入 Marked.js 來解析 Markdown -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js"></script>
 
     <script>
 
@@ -170,15 +191,17 @@
                 const markdown = await response.text();
 
                 // 設定 marked 選項
-                marked.setOptions({
-                    breaks: true,        // 支援換行
-                    gfm: true,           // 支援 GitHub 風格 Markdown
-                    headerIds: false,    // 不生成 header ID
-                    mangle: false        // 不轉換 email
-                });
+                // 初始化 markdown-it
+                const md = window.markdownit({
+                    html: true,
+                    breaks: true,
+                    linkify: true
+                })
+                    .use(window.markdownitEmoji)
+                    .use(window.markdownitFootnote);
 
-                // 將 Markdown 轉換成 HTML
-                const html = marked.parse(markdown);
+                // 解析 Markdown
+                const html = md.render(markdown);
 
                 // 獲取筆記配置
                 const noteConfig = notesConfig[noteName] || notesConfig['default'];
@@ -197,6 +220,31 @@
 
                 // 顯示內容（標頭 + Markdown 內容）
                 document.getElementById('content').innerHTML = noteHeader + html;
+
+                // 加上行號 class
+                document.querySelectorAll('pre code').forEach(function (code) {
+                    code.parentElement.classList.add('line-numbers');
+                });
+                
+                // 為所有 pre 標籤加上 line-numbers class
+                document.querySelectorAll('pre code').forEach(function (code) {
+                    code.parentElement.classList.add('line-numbers');
+                });
+
+                // 執行 Prism 高亮
+                if (typeof Prism !== 'undefined') {
+                    Prism.highlightAll();
+                }
+
+                if (typeof renderMathInElement !== 'undefined') {
+                    renderMathInElement(document.getElementById('content'), {
+                        delimiters: [
+                            { left: '$$', right: '$$', display: true },
+                            { left: '$', right: '$', display: false }
+                        ]
+                    });
+                }
+
 
                 // 更新頁面標題
                 document.title = noteConfig.title + ' - 學習筆記';
@@ -239,6 +287,20 @@
         // 頁面載入時執行
         document.addEventListener('DOMContentLoaded', loadMarkdown);
     </script>
+
+    <!-- Prism JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+
+    <!-- KaTeX JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-emoji/2.0.2/markdown-it-emoji.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.3/markdown-it-footnote.min.js"></script>
+    <!-- 行號插件 JS -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
 </body>
 
 </html>
