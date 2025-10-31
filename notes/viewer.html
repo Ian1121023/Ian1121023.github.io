@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>筆記檢視器</title>
+    <meta name="description" content="技術學習筆記檢視器 - 記錄和分享程式設計、雲端運算等學習心得">
+    <meta name="keywords" content="學習筆記,程式設計,技術文章,GCP,Python,HTML,CSS">
+    <meta name="author" content="張易安">
+    <title>筆記檢視器 - 學習筆記</title>
 
     <script src="notes-config.js"></script>
 
@@ -190,15 +193,20 @@
                 // 讀取 Markdown 內容
                 const markdown = await response.text();
 
-                // 設定 marked 選項
                 // 初始化 markdown-it
                 const md = window.markdownit({
                     html: true,
                     breaks: true,
                     linkify: true
-                })
-                    .use(window.markdownitEmoji)
-                    .use(window.markdownitFootnote);
+                });
+
+                // 如果插件可用，則載入
+                if (typeof window.markdownitEmoji !== 'undefined') {
+                    md.use(window.markdownitEmoji);
+                }
+                if (typeof window.markdownitFootnote !== 'undefined') {
+                    md.use(window.markdownitFootnote);
+                }
 
                 // 解析 Markdown
                 const html = md.render(markdown);
@@ -221,30 +229,26 @@
                 // 顯示內容（標頭 + Markdown 內容）
                 document.getElementById('content').innerHTML = noteHeader + html;
 
-                // 加上行號 class
-                document.querySelectorAll('pre code').forEach(function (code) {
-                    code.parentElement.classList.add('line-numbers');
-                });
-                
-                // 為所有 pre 標籤加上 line-numbers class
+                // 為所有程式碼區塊加上行號 class
                 document.querySelectorAll('pre code').forEach(function (code) {
                     code.parentElement.classList.add('line-numbers');
                 });
 
-                // 執行 Prism 高亮
+                // 執行 Prism 語法高亮
                 if (typeof Prism !== 'undefined') {
                     Prism.highlightAll();
                 }
 
+                // 渲染數學公式（如果 KaTeX 可用）
                 if (typeof renderMathInElement !== 'undefined') {
                     renderMathInElement(document.getElementById('content'), {
                         delimiters: [
                             { left: '$$', right: '$$', display: true },
                             { left: '$', right: '$', display: false }
-                        ]
+                        ],
+                        throwOnError: false
                     });
                 }
-
 
                 // 更新頁面標題
                 document.title = noteConfig.title + ' - 學習筆記';
