@@ -6,101 +6,65 @@ const notesConfig = {
     'cloud/gcp-basic': {
         title: 'GCP基礎入門學習路徑',
         author: '張易安',
-        date: '2025-6-25',
-        tags: ['GCP']
+        date: '2025-06-25',
+        tags: ['GCP', '雲端', '學習路徑']
     },
 
     'cloud/cloud-planning': {
         title: '雲端維運規劃',
         author: '張易安',
-        date: '2025-6-25',
-        tags: ['plan']
+        date: '2025-06-25',
+        tags: ['雲端', '維運', '規劃']
     },
-    
+
     'cloud/it-basic': {
         title: 'IT 基礎知識',
         author: '張易安',
-        date: '2025-6-25',
-        tags: ['IT']
+        date: '2025-06-25',
+        tags: ['IT', '基礎', '知識']
     },
-    
-    // 程式設計相關
+
+    // 前端開發
     'frontend/html-css': {
         title: 'HTML/CSS 基礎入門',
         author: '張易安',
-        date: '2024-01-25',
-        tags: ['CSS', 'HTML', '基礎']
+        date: '2025-06-24',
+        tags: ['HTML', 'CSS', '前端', '基礎']
     },
-    
-    'javascript-advanced': {
-        title: 'JavaScript 進階概念',
-        author: '你的名字',
-        date: '2024-02-01',
-        tags: ['JavaScript', 'Web開發', '進階']
+
+    // 後端開發
+    'backend/python-basics': {
+        title: 'Python 程式設計基礎',
+        author: '張易安',
+        date: '2025-06-25',
+        tags: ['Python', '程式設計', '後端', '基礎']
     },
-    
-    'react-tutorial': {
-        title: 'React 入門教學',
-        author: '你的名字',
-        date: '2024-02-10',
-        tags: ['React', 'Frontend', '框架']
+
+    // 工具與環境
+    'tools/git-basics': {
+        title: 'Git 版本控制基礎',
+        author: '張易安',
+        date: '2025-06-24',
+        tags: ['Git', '版本控制', '工具']
     },
-    
-    'nodejs-backend': {
-        title: 'Node.js 後端開發',
-        author: '你的名字',
-        date: '2024-02-15',
-        tags: ['Node.js', 'Backend', 'API']
-    },
-    
-    // 數據科學相關
-    'data-analysis': {
-        title: '數據分析入門',
-        author: '你的名字',
-        date: '2024-02-20',
-        tags: ['數據分析', 'Python', 'Pandas']
-    },
-    
-    'machine-learning': {
-        title: '機器學習基礎',
-        author: '你的名字',
-        date: '2024-02-25',
-        tags: ['機器學習', 'AI', 'TensorFlow']
-    },
-    
-    // 工具和環境
-    'A': {
-        title: 'Markdown基本操作',
-        author: '你的名字',
-        date: '2025-03-01',
-        tags: ['MD', '工具']
-    },
-    
+
     'misc/markdown': {
-        title: 'Markdown基本操作',
-        author: '你的名字',
-        date: '2024-03-05',
-        tags: ['MD', '工具']
+        title: 'Markdown 語法指南',
+        author: '張易安',
+        date: '2025-06-24',
+        tags: ['Markdown', '語法', '工具']
     },
-    
-    // 學習筆記
-    'study-methods': {
-        title: '有效學習方法',
-        author: '你的名字',
-        date: '2024-03-10',
-        tags: ['學習方法', '效率', '筆記']
-    },
-    
-    // 關於頁面
-    'about': {
-        title: '關於本筆記系統',
-        author: '系統管理員',
-        date: '2024-01-01',
-        tags: ['關於', '說明']
+
+    // 預設配置（當筆記不存在時使用）
+    'default': {
+        title: '筆記未找到',
+        author: '系統',
+        date: '2025-01-01',
+        tags: ['系統']
     }
-    
+
     // 添加新筆記時，請按照以下格式：
-    // 'note-filename': {
+    // 'category/note-filename': {
     //     title: '筆記標題',
     //     author: '作者名稱',
     //     date: 'YYYY-MM-DD',
