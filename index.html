@@ -22,6 +22,7 @@
     <nav>
       <a href="#about">關於</a>
       <a href="#craft">技能</a>
+      <a href="#lab">演示</a>
       <a href="#path">歷程</a>
       <a href="#contact">聯絡</a>
     </nav>
@@ -47,8 +48,8 @@
     <!-- MARQUEE -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JavaScript</span><b>✦</b><span>Python</span><b>✦</b><span>Node.js</span><b>✦</b><span>Express</span><b>✦</b><span>Git</span><b>✦</b><span>CI/CD</span><b>✦</b><span>GCP</span><b>✦</b><span>AWS</span><b>✦</b>
-        <span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JavaScript</span><b>✦</b><span>Python</span><b>✦</b><span>Node.js</span><b>✦</b><span>Express</span><b>✦</b><span>Git</span><b>✦</b><span>CI/CD</span><b>✦</b><span>GCP</span><b>✦</b><span>AWS</span><b>✦</b>
+        <span>ESP32</span><b>✦</b><span>Arduino</span><b>✦</b><span>PLC</span><b>✦</b><span>Modbus</span><b>✦</b><span>I²C</span><b>✦</b><span>SPI</span><b>✦</b><span>UART</span><b>✦</b><span>MQTT</span><b>✦</b><span>Sensors</span><b>✦</b><span>Oscilloscope</span><b>✦</b><span>OEE</span><b>✦</b><span>FMEA</span><b>✦</b>
+        <span>ESP32</span><b>✦</b><span>Arduino</span><b>✦</b><span>PLC</span><b>✦</b><span>Modbus</span><b>✦</b><span>I²C</span><b>✦</b><span>SPI</span><b>✦</b><span>UART</span><b>✦</b><span>MQTT</span><b>✦</b><span>Sensors</span><b>✦</b><span>Oscilloscope</span><b>✦</b><span>OEE</span><b>✦</b><span>FMEA</span><b>✦</b>
       </div>
     </div>
 
@@ -85,34 +86,214 @@
     <!-- CRAFT -->
     <section id="craft" class="section craft">
       <div class="section-label reveal"><span>02</span>技能</div>
-      <h2 class="section-title reveal">The <em>stack</em> I reach for.</h2>
+      <h2 class="section-title reveal">Keeping the <em>line</em> running.</h2>
+
+      <div class="duties-head reveal">
+        <h3>設備工程師在做什麼？</h3>
+        <p>讓機台穩定、安全、有效率地運轉。從裝機到改善，每一個環節都需要軟硬兼備的能力。</p>
+      </div>
+      <ol class="duties">
+        <li class="reveal"><span class="duty-no">01</span><h4>裝機與驗收</h4><p>機台進廠、配線、試車，確認規格與安全條件。</p></li>
+        <li class="reveal"><span class="duty-no">02</span><h4>預防保養 PM</h4><p>依週期點檢、更換耗材，把故障擋在發生之前。</p></li>
+        <li class="reveal"><span class="duty-no">03</span><h4>異常排除</h4><p>看電路圖、量訊號、拆解問題，最快讓機台復機。</p></li>
+        <li class="reveal"><span class="duty-no">04</span><h4>數據監控</h4><p>用感測器與微控制器收集稼動與健康數據。</p></li>
+        <li class="reveal"><span class="duty-no">05</span><h4>持續改善</h4><p>分析 MTBF / OEE，找出根因，提升良率與產能。</p></li>
+      </ol>
+
       <div class="stack">
         <div class="layer reveal tilt">
-          <div class="layer-head"><span class="layer-idx">L1</span><h3>Frontend</h3></div>
-          <ul><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-          <p>語意化結構、響應式版面，與流暢的互動細節。</p>
+          <div class="layer-head"><span class="layer-idx">01</span><h3>Embedded</h3></div>
+          <ul><li>ESP32</li><li>Arduino</li><li>STM32</li><li>C / C++</li><li>FreeRTOS</li><li>PlatformIO</li></ul>
+          <p>從 GPIO、ADC、PWM 到中斷與計時器，用韌體讓硬體動起來。</p>
         </div>
         <div class="layer reveal tilt">
-          <div class="layer-head"><span class="layer-idx">L2</span><h3>Backend</h3></div>
-          <ul><li>Python</li><li>Node.js</li><li>Express</li></ul>
-          <p>用 Flask 與 Express 打造乾淨、好維護的 API。</p>
+          <div class="layer-head"><span class="layer-idx">02</span><h3>Protocols</h3></div>
+          <ul><li>UART</li><li>I²C</li><li>SPI</li><li>RS-485 / Modbus</li><li>CAN</li><li>MQTT</li></ul>
+          <p>讓感測器、控制器與上位系統說同一種語言。</p>
         </div>
         <div class="layer reveal tilt">
-          <div class="layer-head"><span class="layer-idx">L3</span><h3>Cloud</h3></div>
-          <ul><li>GCP</li><li>AWS</li><li>CI/CD</li></ul>
-          <p>自動化部署到 Compute Engine 與 EC2，讓上線變成日常。</p>
+          <div class="layer-head"><span class="layer-idx">03</span><h3>Sensing</h3></div>
+          <ul><li>溫溼度</li><li>壓力</li><li>振動</li><li>光電 / 近接開關</li><li>繼電器</li><li>步進 / 伺服馬達</li></ul>
+          <p>選對感測器與致動器，把物理世界轉成可靠的訊號。</p>
         </div>
         <div class="layer reveal tilt">
-          <div class="layer-head"><span class="layer-idx">L4</span><h3>Workflow</h3></div>
-          <ul><li>Git</li><li>VS Code</li><li>Linux</li></ul>
-          <p>穩定的分支流程與順手的工具鏈，是速度的根本。</p>
+          <div class="layer-head"><span class="layer-idx">04</span><h3>Automation</h3></div>
+          <ul><li>PLC 階梯圖</li><li>HMI</li><li>變頻器</li><li>氣壓元件</li><li>電控配線圖</li></ul>
+          <p>讀懂並修改控制邏輯，讓機台照著流程穩定動作。</p>
         </div>
+        <div class="layer reveal tilt">
+          <div class="layer-head"><span class="layer-idx">05</span><h3>Maintenance</h3></div>
+          <ul><li>PM / CM</li><li>故障排除</li><li>三用電表</li><li>示波器</li><li>焊接</li><li>LOTO 上鎖掛牌</li></ul>
+          <p>安全第一，用量測找證據，而不是靠猜。</p>
+        </div>
+        <div class="layer reveal tilt">
+          <div class="layer-head"><span class="layer-idx">06</span><h3>Improvement</h3></div>
+          <ul><li>OEE</li><li>MTBF / MTTR</li><li>SPC</li><li>FMEA</li><li>8D</li><li>Python 分析</li></ul>
+          <p>用數據說話，從每一次停機裡學到東西。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAB -->
+    <section id="lab" class="section lab">
+      <div class="section-label reveal"><span>03</span>演示</div>
+      <h2 class="section-title reveal">Try it <em>live.</em></h2>
+      <p class="lab-lede reveal">三個可以直接操作的小演示，對應設備工程師每天會碰到的事：監控機台、量測訊號、看懂控制邏輯。</p>
+
+      <!-- Demo 1: ESP32 monitor -->
+      <article class="demo demo-esp reveal" id="esp">
+        <header class="demo-head">
+          <span class="demo-tag">Demo 01 · ESP32</span>
+          <h3>機台健康監控站</h3>
+          <p>ESP32 讀取泵浦的振動、溫度與電流，超過門檻就亮燈並透過 MQTT 發出警報。試著模擬軸承磨損，再執行維修。</p>
+        </header>
+        <div class="esp-grid">
+          <div class="esp-board">
+            <svg viewBox="0 0 220 330" role="img" aria-label="ESP32 開發板示意圖">
+              <defs>
+                <linearGradient id="pcb" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#16181f"/><stop offset="1" stop-color="#0e1016"/>
+                </linearGradient>
+                <linearGradient id="shield" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#3a3d45"/><stop offset=".5" stop-color="#5a5d66"/><stop offset="1" stop-color="#2c2f36"/>
+                </linearGradient>
+              </defs>
+              <rect x="20" y="10" width="180" height="310" rx="10" fill="url(#pcb)" stroke="rgba(236,231,223,.15)"/>
+              <rect x="50" y="22" width="120" height="34" rx="3" fill="#0b0c10" stroke="rgba(242,181,107,.35)"/>
+              <path d="M60 46 h12 v-14 h12 v14 h12 v-14 h12 v14 h12 v-14 h12 v14 h12" fill="none" stroke="#f2b56b" stroke-width="2" opacity=".75"/>
+              <rect x="50" y="58" width="120" height="110" rx="4" fill="url(#shield)"/>
+              <text x="110" y="104" text-anchor="middle" class="svg-chip">ESP32-WROOM-32</text>
+              <text x="110" y="122" text-anchor="middle" class="svg-chip-sm">Wi-Fi · BT · 240 MHz</text>
+              <g class="pins"><rect x="27" y="63" width="6" height="6" rx="1"/><rect x="27" y="75" width="6" height="6" rx="1"/><rect x="27" y="87" width="6" height="6" rx="1"/><rect x="27" y="99" width="6" height="6" rx="1"/><rect x="27" y="111" width="6" height="6" rx="1"/><rect x="27" y="123" width="6" height="6" rx="1"/><rect x="27" y="135" width="6" height="6" rx="1"/><rect x="27" y="147" width="6" height="6" rx="1"/><rect x="27" y="159" width="6" height="6" rx="1"/><rect x="27" y="171" width="6" height="6" rx="1"/><rect x="27" y="183" width="6" height="6" rx="1"/><rect x="27" y="195" width="6" height="6" rx="1"/><rect x="27" y="207" width="6" height="6" rx="1"/><rect x="27" y="219" width="6" height="6" rx="1"/><rect x="27" y="231" width="6" height="6" rx="1"/><rect x="27" y="243" width="6" height="6" rx="1"/><rect x="27" y="255" width="6" height="6" rx="1"/><rect x="27" y="267" width="6" height="6" rx="1"/><rect x="27" y="279" width="6" height="6" rx="1"/><rect x="27" y="291" width="6" height="6" rx="1"/><rect x="187" y="63" width="6" height="6" rx="1"/><rect x="187" y="75" width="6" height="6" rx="1"/><rect x="187" y="87" width="6" height="6" rx="1"/><rect x="187" y="99" width="6" height="6" rx="1"/><rect x="187" y="111" width="6" height="6" rx="1"/><rect x="187" y="123" width="6" height="6" rx="1"/><rect x="187" y="135" width="6" height="6" rx="1"/><rect x="187" y="147" width="6" height="6" rx="1"/><rect x="187" y="159" width="6" height="6" rx="1"/><rect x="187" y="171" width="6" height="6" rx="1"/><rect x="187" y="183" width="6" height="6" rx="1"/><rect x="187" y="195" width="6" height="6" rx="1"/><rect x="187" y="207" width="6" height="6" rx="1"/><rect x="187" y="219" width="6" height="6" rx="1"/><rect x="187" y="231" width="6" height="6" rx="1"/><rect x="187" y="243" width="6" height="6" rx="1"/><rect x="187" y="255" width="6" height="6" rx="1"/><rect x="187" y="267" width="6" height="6" rx="1"/><rect x="187" y="279" width="6" height="6" rx="1"/><rect x="187" y="291" width="6" height="6" rx="1"/></g>
+              <rect x="88" y="200" width="44" height="44" rx="3" fill="#0b0c10" stroke="rgba(236,231,223,.12)"/>
+              <text x="110" y="226" text-anchor="middle" class="svg-chip-sm">CP2102</text>
+              <circle id="espLed" cx="74" cy="270" r="6" class="led led-blue"/>
+              <text x="74" y="290" text-anchor="middle" class="svg-label">GPIO2</text>
+              <circle id="espAlm" cx="146" cy="270" r="6" class="led led-red"/>
+              <text x="146" y="290" text-anchor="middle" class="svg-label">ALM</text>
+              <rect x="40" y="186" width="16" height="10" rx="2" fill="#2a2d34"/><text x="48" y="182" text-anchor="middle" class="svg-label">EN</text>
+              <rect x="164" y="186" width="16" height="10" rx="2" fill="#2a2d34"/><text x="172" y="182" text-anchor="middle" class="svg-label">BOOT</text>
+              <rect x="94" y="304" width="32" height="16" rx="3" fill="#8f939b"/>
+            </svg>
+          </div>
+          <div class="esp-panel">
+            <div class="readouts">
+              <div class="readout"><span>振動 RMS</span><b id="rVib">--</b><i>mm/s</i></div>
+              <div class="readout"><span>溫度</span><b id="rTemp">--</b><i>°C</i></div>
+              <div class="readout"><span>馬達電流</span><b id="rAmp">--</b><i>A</i></div>
+              <div class="readout status" id="rStatus"><span>狀態</span><b>NORMAL</b><i>&nbsp;</i></div>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="espChart" aria-label="振動趨勢圖"></canvas>
+              <span class="chart-cap">振動趨勢 · 最近 30 秒</span>
+            </div>
+            <div class="controls">
+              <button class="btn" id="btnFault" type="button">模擬軸承磨損</button>
+              <label class="switch"><input type="checkbox" id="ledToggle"><span></span>GPIO2 LED</label>
+              <label class="slider">門檻 <input type="range" id="thr" min="2" max="8" step="0.1" value="4.5"><output id="thrOut">4.5</output> mm/s</label>
+            </div>
+            <pre class="serial" id="serial" aria-live="polite"></pre>
+          </div>
+        </div>
+        <details class="code">
+          <summary>看韌體程式碼（Arduino / C++）</summary>
+<pre><code><span class="c">// ESP32 vibration monitor — 每秒取樣並上傳</span>
+<span class="k">#include</span> &lt;WiFi.h&gt;
+<span class="k">#include</span> &lt;PubSubClient.h&gt;
+<span class="k">#include</span> &lt;Adafruit_MPU6050.h&gt;
+
+<span class="k">const float</span> LIMIT_MM_S = <span class="n">4.5</span>;   <span class="c">// ISO 10816 class II 警戒值</span>
+<span class="k">const int</span>   ALM_PIN    = <span class="n">25</span>;
+
+<span class="k">void</span> <span class="f">loop</span>() {
+  <span class="k">float</span> vib  = <span class="f">readVibrationRMS</span>(mpu, <span class="n">1000</span>);  <span class="c">// 1 kHz 取樣</span>
+  <span class="k">float</span> temp = <span class="f">readTemperature</span>();
+  <span class="k">float</span> amp  = <span class="f">analogReadMilliVolts</span>(CT_PIN) * CT_RATIO;
+
+  <span class="f">digitalWrite</span>(ALM_PIN, vib &gt; LIMIT_MM_S);
+  mqtt.<span class="f">publish</span>(<span class="s">"factory/line3/pump1"</span>, <span class="f">toJson</span>(vib, temp, amp));
+  <span class="f">delay</span>(<span class="n">1000</span>);
+}</code></pre>
+        </details>
+      </article>
+
+      <div class="demo-pair">
+        <!-- Demo 2: Oscilloscope -->
+        <article class="demo demo-scope reveal" id="scope">
+          <header class="demo-head">
+            <span class="demo-tag">Demo 02 · Oscilloscope</span>
+            <h3>通訊協定波形</h3>
+            <p>同一個位元組，用三種協定送出來長什麼樣子？輸入一個 16 進位數字試試看。</p>
+          </header>
+          <div class="scope-ctrl">
+            <div class="tabs" role="tablist">
+              <button role="tab" class="tab active" data-proto="uart" aria-selected="true">UART</button>
+              <button role="tab" class="tab" data-proto="i2c" aria-selected="false">I²C</button>
+              <button role="tab" class="tab" data-proto="spi" aria-selected="false">SPI</button>
+            </div>
+            <label class="hex">0x<input id="hexIn" value="5A" maxlength="2" spellcheck="false" autocomplete="off" aria-label="要傳送的位元組（16 進位）"></label>
+          </div>
+          <div class="scope-screen"><canvas id="scopeCanvas" aria-label="示波器波形"></canvas></div>
+          <p class="scope-read" id="scopeRead"></p>
+        </article>
+
+        <!-- Demo 3: PLC ladder -->
+        <article class="demo demo-plc reveal" id="plc">
+          <header class="demo-head">
+            <span class="demo-tag">Demo 03 · PLC</span>
+            <h3>馬達自保持迴路</h3>
+            <p>最經典的階梯圖：按 START 啟動、放開仍會保持運轉，按 STOP 或過載跳脫就停止。亮起的線代表電流路徑。</p>
+          </header>
+          <div class="plc-body">
+            <svg id="ladder" viewBox="0 0 520 320" role="img" aria-label="PLC 階梯圖">
+              <line x1="20" y1="20" x2="20" y2="300" class="rail on"/>
+              <line x1="500" y1="20" x2="500" y2="300" class="rail"/>
+              <!-- Rung 1 -->
+              <path id="w1a" d="M20 70 H80"/>
+              <path id="w1b" d="M50 70 V130 H80"/>
+              <g id="cStart" class="contact" transform="translate(80 70)"><line x1="0" y1="-14" x2="0" y2="14"/><line x1="24" y1="-14" x2="24" y2="14"/><text x="12" y="-22">X0 START</text></g>
+              <g id="cSeal" class="contact" transform="translate(80 130)"><line x1="0" y1="-14" x2="0" y2="14"/><line x1="24" y1="-14" x2="24" y2="14"/><text x="12" y="30">M0</text></g>
+              <path id="w1c" d="M104 70 H160"/>
+              <path id="w1d" d="M104 130 H160 V70"/>
+              <path id="w1e" d="M160 70 H200"/>
+              <g id="cStop" class="contact nc" transform="translate(200 70)"><line x1="0" y1="-14" x2="0" y2="14"/><line x1="24" y1="-14" x2="24" y2="14"/><line x1="-4" y1="12" x2="28" y2="-12"/><text x="12" y="-22">X1 STOP</text></g>
+              <path id="w1f" d="M224 70 H280"/>
+              <g id="cOl" class="contact nc" transform="translate(280 70)"><line x1="0" y1="-14" x2="0" y2="14"/><line x1="24" y1="-14" x2="24" y2="14"/><line x1="-4" y1="12" x2="28" y2="-12"/><text x="12" y="-22">X2 OL</text></g>
+              <path id="w1g" d="M304 70 H420"/>
+              <g id="kM" class="coil" transform="translate(436 70)"><path d="M-12 -14 A18 18 0 0 0 -12 14"/><path d="M12 -14 A18 18 0 0 1 12 14"/><text x="0" y="-22">M0</text></g>
+              <path d="M452 70 H500" class="neutral"/>
+              <!-- Rung 2 -->
+              <path id="w2a" d="M20 215 H80"/>
+              <g id="cM2" class="contact" transform="translate(80 215)"><line x1="0" y1="-14" x2="0" y2="14"/><line x1="24" y1="-14" x2="24" y2="14"/><text x="12" y="-22">M0</text></g>
+              <path id="w2b" d="M104 215 H420"/>
+              <g id="kY" class="coil" transform="translate(436 215)"><path d="M-12 -14 A18 18 0 0 0 -12 14"/><path d="M12 -14 A18 18 0 0 1 12 14"/><text x="0" y="-22">Y0 馬達</text></g>
+              <path d="M452 215 H500" class="neutral"/>
+              <!-- Rung 3 -->
+              <path id="w3a" d="M20 280 H80"/>
+              <g id="cOl2" class="contact" transform="translate(80 280)"><line x1="0" y1="-14" x2="0" y2="14"/><line x1="24" y1="-14" x2="24" y2="14"/><text x="12" y="-22">X2 OL</text></g>
+              <path id="w3b" d="M104 280 H420"/>
+              <g id="kA" class="coil" transform="translate(436 280)"><path d="M-12 -14 A18 18 0 0 0 -12 14"/><path d="M12 -14 A18 18 0 0 1 12 14"/><text x="0" y="-22">Y1 警報燈</text></g>
+              <path d="M452 280 H500" class="neutral"/>
+            </svg>
+            <div class="plc-field">
+              <div class="motor" id="motor" aria-label="馬達">
+                <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" class="motor-ring"/><g class="fan"><path d="M40 40 C40 20 52 12 58 18 C62 24 52 34 40 40Z"/><path d="M40 40 C40 20 52 12 58 18 C62 24 52 34 40 40Z" transform="rotate(120 40 40)"/><path d="M40 40 C40 20 52 12 58 18 C62 24 52 34 40 40Z" transform="rotate(240 40 40)"/></g><circle cx="40" cy="40" r="5" class="hub"/></svg>
+                <span id="motorState">STOPPED</span>
+              </div>
+              <div class="plc-btns">
+                <button class="pb pb-start" id="pbStart" type="button">START</button>
+                <button class="pb pb-stop" id="pbStop" type="button">STOP</button>
+                <label class="switch"><input type="checkbox" id="olTrip"><span></span>過載跳脫</label>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
     <!-- PATH -->
     <section id="path" class="section path">
-      <div class="section-label reveal"><span>03</span>歷程</div>
+      <div class="section-label reveal"><span>04</span>歷程</div>
       <h2 class="section-title reveal">A <em>slow</em> and steady climb.</h2>
       <ol class="timeline">
         <li class="reveal">
@@ -140,7 +321,7 @@
 
     <!-- CONTACT -->
     <section id="contact" class="section contact">
-      <div class="section-label reveal"><span>04</span>聯絡</div>
+      <div class="section-label reveal"><span>05</span>聯絡</div>
       <p class="contact-kicker reveal">有想法、有合作，或只是想聊聊？</p>
       <a class="contact-mail reveal" href="mailto:tonyikci@gmail.com">
         <span class="mail-say">Say hello</span>
@@ -160,5 +341,6 @@
   </footer>
 
   <script src="main.js"></script>
+  <script src="demos.js"></script>
 </body>
 </html>
