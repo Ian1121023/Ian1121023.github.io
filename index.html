@@ -1,408 +1,164 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="張易安的技術學習筆記 - 分享程式設計、雲端運算、前端開發等學習心得與實作經驗">
-    <meta name="keywords" content="學習筆記,程式設計,前端開發,Python,GCP,雲端運算,技術部落格">
-    <meta name="author" content="張易安">
-    <title>我的學習筆記 - 技術學習與分享</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        
-        /* 導航列 */
-        nav {
-            background: #2c3e50;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        nav .logo {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        nav a:hover {
-            color: #3498db;
-        }
-        
-        /* 主要內容區 */
-        main {
-            margin-top: 60px;
-            min-height: calc(100vh - 160px);
-        }
-        
-        /* 英雄區塊 */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 4rem 20px;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-        
-        /* 內容容器 */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 20px;
-        }
-        
-        /* 卡片網格 */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        /* 卡片樣式 */
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        
-        .card h3 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .card .icon {
-            font-size: 1.5rem;
-        }
-        
-        .card-content {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
-        }
-        
-        .date {
-            color: #999;
-            font-size: 0.9rem;
-        }
-        
-        .read-more {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .read-more:hover {
-            color: #764ba2;
-        }
-        
-        /* 標籤 */
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        
-        .tag {
-            background: #e9ecef;
-            color: #495057;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-        }
-        
-        .tag:hover {
-            background: #667eea;
-            color: white;
-            transform: scale(1.05);
-        }
-        
-        /* 頁尾 */
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 2rem 20px;
-            margin-top: 4rem;
-        }
-        
-        footer a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        
-        /* 動畫 */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* 響應式設計 */
-        @media (max-width: 768px) {
-            nav ul {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* 進度條 */
-        .progress-bar {
-            background: #e9ecef;
-            border-radius: 10px;
-            height: 8px;
-            margin-top: 0.5rem;
-            overflow: hidden;
-        }
-        
-        .progress {
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            height: 100%;
-            border-radius: 10px;
-            transition: width 0.3s ease;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>張易安 · Ian Chang</title>
+  <meta name="description" content="張易安 Ian Chang — 從前端走到雲端的自學工程師。">
+  <meta name="theme-color" content="#07080c">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307080c'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='38' fill='%23f2b56b'%3E安%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+TC:wght@400;600;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- 導航列 -->
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a href="#top" class="brand"><span class="brand-mark">安</span><span class="brand-text">Ian Chang</span></a>
     <nav>
-        <div class="container">
-            <a href="index.html" class="logo">📚 學習筆記</a>
-            <ul>
-                <li><a href="index.html">首頁</a></li>
-                <li><a href="notes.html">筆記</a></li>
-                <li><a href="projects.html">專案</a></li>
-                <li><a href="about.html">關於我</a></li>
-            </ul>
-        </div>
+      <a href="#about">關於</a>
+      <a href="#craft">技能</a>
+      <a href="#path">歷程</a>
+      <a href="#contact">聯絡</a>
     </nav>
-    
-    <!-- 主要內容 -->
-    <main>
-        <!-- 英雄區塊 -->
-        <section class="hero">
-            <h1>歡迎來到我的學習空間</h1>
-            <p>記錄知識、分享心得、持續成長</p>
-        </section>
-        
-        <!-- 最新筆記 -->
-        <section class="container">
-            <h2 style="color: #2c3e50; margin-bottom: 2rem;">📝 最新筆記</h2>
-            
-            <div class="cards-grid">
-                <!-- 筆記卡片 1 -->
-                <article class="card">
-                    <h3><span class="icon">🌐</span> HTML/CSS 基礎入門</h3>
-                    <div class="card-content">
-                        <p>學習網頁開發的第一步，了解 HTML 結構與 CSS 樣式的基本概念，包含常用標籤、選擇器、盒模型等重要知識。</p>
-                        <div class="tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">前端</span>
-                        </div>
-                    </div>
-                    <div class="card-meta">
-                        <span class="date">2025-06-24</span>
-                        <a href="notes/viewer.html?note=html-css" class="read-more">閱讀更多 →</a>
-                    </div>
-                </article>
-                
-                <!-- 筆記卡片 2 -->
-                <article class="card">
-                    <h3><span class="icon">🐍</span> Python 程式設計基礎</h3>
-                    <div class="card-content">
-                        <p>從基礎語法到進階應用，學習 Python 程式設計的核心概念。包含資料結構、函式、模組等重要知識。</p>
-                        <div class="tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">程式設計</span>
-                            <span class="tag">後端</span>
-                        </div>
-                    </div>
-                    <div class="card-meta">
-                        <span class="date">2025-06-25</span>
-                        <a href="notes/viewer.html?note=backend/python-basics" class="read-more">閱讀更多 →</a>
-                    </div>
-                </article>
-                
-                <!-- 筆記卡片 3 -->
-                <article class="card">
-                    <h3><span class="icon">☁️</span> GCP 基礎入門</h3>
-                    <div class="card-content">
-                        <p>從 Google Cloud Platform 基礎概念開始，學習雲端運算的核心服務與實作，建立雲端技術的完整學習路徑。</p>
-                        <div class="tags">
-                            <span class="tag">GCP</span>
-                            <span class="tag">雲端</span>
-                            <span class="tag">學習路徑</span>
-                        </div>
-                    </div>
-                    <div class="card-meta">
-                        <span class="date">2025-06-25</span>
-                        <a href="notes/viewer.html?note=cloud/gcp-basic" class="read-more">閱讀更多 →</a>
-                    </div>
-                </article>
-            </div>
-        </section>
-        
-        <!-- 學習進度 -->
-        <section class="container">
-            <h2 style="color: #2c3e50; margin-bottom: 2rem;">📊 學習進度</h2>
-            
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>前端開發</h3>
-                    <p>HTML/CSS 基礎</p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 30%"></div>
-                    </div>
-                    <p style="text-align: right; margin-top: 0.5rem; color: #667eea;">30%</p>
-                </div>
+  </header>
 
-                <div class="card">
-                    <h3>Python 程式設計</h3>
-                    <p>基礎語法與資料結構</p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 65%"></div>
-                    </div>
-                    <p style="text-align: right; margin-top: 0.5rem; color: #667eea;">65%</p>
-                </div>
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <p class="eyebrow reveal"><span class="dot"></span>Taipei · Self-taught engineer · 2026</p>
+      <h1 class="hero-title">
+        <span class="line reveal"><span class="zh">張易安</span></span>
+        <span class="line reveal"><em>building quietly,</em></span>
+        <span class="line reveal"><em>shipping to the</em> <span class="accent">cloud.</span></span>
+      </h1>
+      <div class="hero-foot reveal">
+        <p class="hero-lede">從一行 HTML 出發，一路走到雲端部署。<br>我喜歡把複雜的東西拆開、理解，再安靜地把它做好。</p>
+        <a href="#about" class="scroll-cue" aria-label="往下捲動">
+          <span>Scroll</span><i></i>
+        </a>
+      </div>
+    </section>
 
-                <div class="card">
-                    <h3>雲端運算學習</h3>
-                    <p>GCP 基礎與應用</p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 45%"></div>
-                    </div>
-                    <p style="text-align: right; margin-top: 0.5rem; color: #667eea;">45%</p>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <!-- 頁尾 -->
-    <footer>
-        <p>© 2025 我的學習筆記 | 使用 <a href="https://pages.github.com/">GitHub Pages</a> 建立</p>
-        <p style="margin-top: 0.5rem; opacity: 0.8;">持續學習，永不停歇 💪</p>
-    </footer>
-    
-    <script>
-        // 平滑滾動
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-        
-        // 動態載入動畫
-        const cards = document.querySelectorAll('.card');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out';
-                }
-            });
-        });
-        
-        cards.forEach(card => observer.observe(card));
-    </script>
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JavaScript</span><b>✦</b><span>Python</span><b>✦</b><span>Node.js</span><b>✦</b><span>Express</span><b>✦</b><span>Git</span><b>✦</b><span>CI/CD</span><b>✦</b><span>GCP</span><b>✦</b><span>AWS</span><b>✦</b>
+        <span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JavaScript</span><b>✦</b><span>Python</span><b>✦</b><span>Node.js</span><b>✦</b><span>Express</span><b>✦</b><span>Git</span><b>✦</b><span>CI/CD</span><b>✦</b><span>GCP</span><b>✦</b><span>AWS</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="section about">
+      <div class="section-label reveal"><span>01</span>關於</div>
+      <div class="about-grid">
+        <h2 class="about-statement reveal">
+          好奇心是起點，<br><span class="muted">結構化思考是方法，</span><br>分享是我前進的方式。
+        </h2>
+        <div class="about-body reveal">
+          <p>我是易安，一位對前端、後端與雲端架構充滿熱情的自學者。這個網站是我的實驗室——每一次部署、每一段程式碼，都是我在成為雲端工程師路上的里程碑。</p>
+          <div class="values">
+            <article class="value tilt">
+              <span class="value-no">i.</span>
+              <h3>好奇心</h3>
+              <p>每天多問一個「為什麼」，讓學習更有深度。</p>
+            </article>
+            <article class="value tilt">
+              <span class="value-no">ii.</span>
+              <h3>結構化思考</h3>
+              <p>拆解複雜問題，讓每一步都清晰可執行。</p>
+            </article>
+            <article class="value tilt">
+              <span class="value-no">iii.</span>
+              <h3>樂於分享</h3>
+              <p>公開筆記與範例，讓彼此成為成長的推手。</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CRAFT -->
+    <section id="craft" class="section craft">
+      <div class="section-label reveal"><span>02</span>技能</div>
+      <h2 class="section-title reveal">The <em>stack</em> I reach for.</h2>
+      <div class="stack">
+        <div class="layer reveal tilt">
+          <div class="layer-head"><span class="layer-idx">L1</span><h3>Frontend</h3></div>
+          <ul><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <p>語意化結構、響應式版面，與流暢的互動細節。</p>
+        </div>
+        <div class="layer reveal tilt">
+          <div class="layer-head"><span class="layer-idx">L2</span><h3>Backend</h3></div>
+          <ul><li>Python</li><li>Node.js</li><li>Express</li></ul>
+          <p>用 Flask 與 Express 打造乾淨、好維護的 API。</p>
+        </div>
+        <div class="layer reveal tilt">
+          <div class="layer-head"><span class="layer-idx">L3</span><h3>Cloud</h3></div>
+          <ul><li>GCP</li><li>AWS</li><li>CI/CD</li></ul>
+          <p>自動化部署到 Compute Engine 與 EC2，讓上線變成日常。</p>
+        </div>
+        <div class="layer reveal tilt">
+          <div class="layer-head"><span class="layer-idx">L4</span><h3>Workflow</h3></div>
+          <ul><li>Git</li><li>VS Code</li><li>Linux</li></ul>
+          <p>穩定的分支流程與順手的工具鏈，是速度的根本。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PATH -->
+    <section id="path" class="section path">
+      <div class="section-label reveal"><span>03</span>歷程</div>
+      <h2 class="section-title reveal">A <em>slow</em> and steady climb.</h2>
+      <ol class="timeline">
+        <li class="reveal">
+          <time>2023.01</time>
+          <div><h3>前端起步</h3><p>掌握 HTML、CSS、JavaScript 基礎與 DOM 操作。</p></div>
+        </li>
+        <li class="reveal">
+          <time>2023.06</time>
+          <div><h3>後端初探</h3><p>使用 Python Flask 與 Node.js Express 架設第一支 API。</p></div>
+        </li>
+        <li class="reveal">
+          <time>2024.03</time>
+          <div><h3>工具提升</h3><p>熟悉 Git 工作流程，打磨 VS Code 開發效率。</p></div>
+        </li>
+        <li class="reveal">
+          <time>2025.01</time>
+          <div><h3>雲端部署</h3><p>在 GCP Compute Engine 與 AWS EC2 上自動化部署專案。</p></div>
+        </li>
+        <li class="reveal now">
+          <time>Now</time>
+          <div><h3>持續往上</h3><p>朝雲端工程師前進，一次一個 commit。</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
+      <div class="section-label reveal"><span>04</span>聯絡</div>
+      <p class="contact-kicker reveal">有想法、有合作，或只是想聊聊？</p>
+      <a class="contact-mail reveal" href="mailto:tonyikci@gmail.com">
+        <span class="mail-say">Say hello</span>
+        <span class="mail-addr">tonyikci@gmail.com <i>↗</i></span>
+      </a>
+      <div class="contact-links reveal">
+        <a href="https://github.com/Ian1121023" target="_blank" rel="noopener">GitHub <i>↗</i></a>
+        <a href="mailto:tonyikci@gmail.com">Email <i>↗</i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>© <span id="year">2026</span> 張易安</span>
+    <span class="foot-clock">Taipei <span id="clock">--:--</span></span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
